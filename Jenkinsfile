@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'DockerHub-Credential', toolName: 'docker') {
-                        sh "docker build -t EseoheB/shippingservice:latest ."
+                        sh "docker build -t eseoheb/shippingservice:latest ."
                     }
                 }
             }
@@ -55,7 +55,7 @@ pipeline {
         // Execute SCA/Dependency Test on Service Docker Image
         stage('Snyk SCA Test | Dependencies') {
             steps {
-                sh "${SNYK_HOME}/snyk-linux test --docker EseoheB/shippingservice:latest || true" 
+                sh "${SNYK_HOME}/snyk-linux test --docker eseoheb/shippingservice:latest || true" 
             }
         }
         // Push Service Image to DockerHub
